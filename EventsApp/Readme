@@ -1,0 +1,42 @@
+This project is based on Arjun's Simple JSON coe'
+
+Create JSON Service in cloud.
+-----------------------------
+1. Provision a vm in amazon
+2. Install MYSQL, Apache, PHP in the vm
+3. Create table
+4. Generate JSON
+Sample Code for JSON
+-----
+
+<?php
+$mysql_db_hostname = "localhost";
+$mysql_db_user = "root";
+$mysql_db_password = "fetna2015";
+$mysql_db_database = "taskmanager";
+
+$con = @mysqli_connect($mysql_db_hostname, $mysql_db_user, $mysql_db_password,
+$mysql_db_database);
+
+if (!$con) {
+trigger_error('Could not connect to MySQL: ' . mysqli_connect_error());
+}
+$var = array();
+$sql = "SELECT * FROM events";
+$result = mysqli_query($con, $sql);
+
+while($obj = mysqli_fetch_object($result)) {
+$var[] = $obj;
+}
+/*echo '{"events":'.json_encode($var).'}';*/
+echo '[{"events":'.json_encode($var).',"success":1,"previous":0,"next":2,"last":2}]';
+?>
+6. Open Settings.swift and change the webservice URL.
+
+----------
+Alternate Method
+----------
+5. Download the sample.json from the source code and upload it in webserver.
+6. Open Settings.swift and change the webservice URL.
+7. Build the solution.
+
